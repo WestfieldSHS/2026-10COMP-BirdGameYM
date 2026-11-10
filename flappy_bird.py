@@ -4,7 +4,7 @@ import sys
 # create constants
 WIDTH = 800
 HEIGHT = 600
-
+score = 0
 # print welcome
 print ("The game is about to start!")
 print ('Click the mouse to "flap" upwards')
@@ -57,8 +57,24 @@ def draw ():
 # update everything
 def update ():
     # update bird
+    global score
     bird.y = bird.y + 1 
     # update pipes
+    if topPipe1.x < -44:
+        topPipe1.x = WIDTH
+        score = score + 1
+    if topPipe2.x < -44:
+        topPipe2.x = WIDTH
+        score = score + 1
+    if topPipe3.x < -44:
+        topPipe3.x = WIDTH
+        score = score + 1
+    if bottomPipe1.x < -44:
+        bottomPipe1.x = WIDTH
+    if bottomPipe2.x < -44:
+        bottomPipe2.x = WIDTH
+    if bottomPipe3.x < -44:
+        bottomPipe3.x = WIDTH        
     topPipe1.x = topPipe1.x - 1
     bottomPipe1.x = bottomPipe1.x - 1
     topPipe2.x = topPipe2.x - 1
@@ -68,25 +84,32 @@ def update ():
     # bird hits bottom of screen
     if bird.y > HEIGHT:
         print("Game Over!")
+        print(f"Score: {score}")
         sys.exit()
     # bird hits pipes
     if bird.colliderect(topPipe1):
         print("Hit!")
+        print(f"Score: {score}")
         sys.exit()
     if bird.colliderect(topPipe2):
         print("Hit!")
+        print(f"Score: {score}")
         sys.exit()
     if bird.colliderect(topPipe3):
         print("Hit!")
+        print(f"Score: {score}")
         sys.exit()
     if bird.colliderect(bottomPipe1):
         print("Hit!")
+        print(f"Score: {score}")
         sys.exit()
     if bird.colliderect(bottomPipe2):
         print("Hit!")
+        print(f"Score: {score}")
         sys.exit()
     if bird.colliderect(bottomPipe3):
         print("Hit!")
+        print(f"Score: {score}")
         sys.exit()                
 # moving
 def on_mouse_down():
